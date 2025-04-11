@@ -14,7 +14,6 @@ class TavilySearchExtension(NewelleExtension):
         self.search_depth = self.get_setting("search_depth") or "basic"
         self.max_results = self.get_setting("max_results") or 5
         self.include_answer = self.get_setting("include_answer") or "false"
-        self.extract_depth = self.get_setting("extract_depth") or "basic"
 
     def install(self):
         if not find_module("tavily-python"):
@@ -37,7 +36,7 @@ class TavilySearchExtension(NewelleExtension):
                 "title": "Search Depth",
                 "description": "The depth of the search. Basic (1 credit) or Advanced (2 credits)",
                 "type": "combo",
-                "values": [("basic", "Basic"), ("advanced", "Advanced")],
+                "values": [("Basic", "basic"), ("Advanced", "advanced")],
                 "default": "basic"
             },
             {
@@ -46,20 +45,11 @@ class TavilySearchExtension(NewelleExtension):
                 "description": "Include an LLM-generated answer to the query",
                 "type": "combo",
                 "values": [
-                    ("false", "No Answer"),
-                    ("basic", "Basic Answer"),
-                    ("advanced", "Detailed Answer")
+                    ("No Answer", "false"),
+                    ("Basic Answer", "basic"),
+                    ("Detailed Answer", "advanced")
                 ],
                 "default": "false"
-            },
-
-            {
-                "key": "extract_depth",
-                "title": "Extract Depth",
-                "description": "The depth of website content extraction. Advanced retrieves more data but costs more credits.",
-                "type": "combo",
-                "values": [("basic", "Basic"), ("advanced", "Advanced")],
-                "default": "basic"
             }
         ]
 
